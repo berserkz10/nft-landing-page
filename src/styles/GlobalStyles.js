@@ -19,6 +19,11 @@ body {
     width: 100%;
     height: 100vh;
     background-color: #09090A;
+      @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 `;

@@ -1,25 +1,21 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import ColoredCircle from "./ColoredCircle";
 const SectionContainer = styled.section`
   width: 100%;
   height: 826px;
-  display: flex;
   padding: 0px 115px 0px 115px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
-const ColoredCircle = styled.div`
-  border-radius: 50%;
-  position: absolute;
-  width: 450px;
-  height: 392px;
-  background-color: #d71d6199;
-  filter: blur(200px);
-  z-index: -1;
-`;
+
 const SliderContainer = styled.div`
   width: 100%;
   height: 674px;
   border: 1px solid white;
+  display: flex;
 `;
 const HeroSection = styled.div`
   display: flex;
@@ -41,7 +37,9 @@ const TextContainer = styled.section`
     letter-spacing: -1.4%;
   }
   span {
-    color: #85129c;
+    background: linear-gradient(to right, #0500fa, #e01e5a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   p {
     font-size: 24px;
@@ -115,7 +113,23 @@ const ImageHolder = styled.div`
   justify-content: center;
   align-items: center;
   background-color: transparent;
+  img {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 `;
+
 const DashedSVG = styled.svg`
   width: ${({ $width }) => $width};
   height: ${({ $height }) => $height};
@@ -151,17 +165,90 @@ const DotsContainer = styled.div`
     background-color: #d9d9d9;
     outline: none;
     border: none;
+    transition: all 0.3s ease;
   }
   .activeBtn {
     width: 41px;
     background: linear-gradient(to right, #0500fa, #e01e5a);
+    transition: all 0.3s ease;
+  }
+`;
+const MainImageContainer = styled.div`
+  width: 40%;
+  height: 100%;
+  border: 1px solid red;
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+  }
+`;
+const ArrowHolder = styled.div`
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background-color: #05021d;
+  position: absolute;
+  top: 358px;
+  right: 551px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 48px;
+    height: 35px;
+  }
+`;
+const StatisticsHolder = styled.section`
+  width: 100%;
+  height: 76px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.5px solid #E7E7E73D;
+
+  p {
+    max-width: 387px;
+  }
+
+  h3 {
+    font-size: 36px;
+    color: #7040f2;
+  }
+  > div:nth-of-type(1) h3 {
+    background: linear-gradient(to right, #0500fa, #e01e5a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;
 const MainSection = () => {
+  const images = ["/mainImage.png", "/secondImage.jpg", "firstImage.jpg"];
+  const statistics = [
+    { number: 30000, text: "World Arts" },
+    { number: 18000, text: "Digital Artists" },
+    { number: 22000, text: "Live Auctions" },
+    { number: 50000, text: "Unique Products" },
+  ];
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const nextSlide = () => {
-    setCurrentSlide((prev) => prev + 1);
+    setCurrentSlide((prev) => (prev + 1) % images.length);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentSlide((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [currentSlide]);
+
+  const getImage = (offset) =>
+    images[(currentSlide + offset + images.length) % images.length];
+
   return (
     <SectionContainer>
       <ColoredCircle />
@@ -187,26 +274,50 @@ const MainSection = () => {
           <ImageHolder
             $width="86px"
             $height="86px"
-            $top="464.84px"
-            $left="602px"
+            $top="521.84px"
+            $left="522px"
           >
             <DashedCircle $width="74.5px" $height="74.5px"></DashedCircle>
+            <img src={getImage(-1)} alt="circle 1" />
           </ImageHolder>
           <ImageHolder
             $width="156px"
             $height="156px"
-            $top="364.53px"
-            $left="694.99px"
+            $top="407.53px"
+            $left="639.99px"
           >
             <DashedCircle $width="136px" $height="136px"></DashedCircle>
+            <img src={getImage(-2)} alt="circle 2" />
           </ImageHolder>
           <DotsContainer>
-            <button className="activeBtn"></button>
-            <button></button>
-            <button></button>
+            {images.map((_, index) => (
+              <button
+                key={index}
+                className={index === currentSlide ? "activeBtn" : ""}
+                onClick={() => setCurrentSlide(index)}
+              />
+            ))}
           </DotsContainer>
         </HeroSection>
+        <MainImageContainer>
+          <img key={currentSlide} src={images[currentSlide]} alt="main image" />
+        </MainImageContainer>
+        <ArrowHolder onClick={nextSlide}>
+          <img src="/icons/arrow.svg" alt="" />
+        </ArrowHolder>
       </SliderContainer>
+      <StatisticsHolder>
+        <p>
+          We will take all the worry and guesswork out of your blockchain and
+          cryptocurrency concerns.
+        </p>
+        {statistics.map((obj) => (
+          <div key={obj.index}>
+            <h3>{obj.number}</h3>
+            <p>{obj.text}</p>
+          </div>
+        ))}
+      </StatisticsHolder>
     </SectionContainer>
   );
 };

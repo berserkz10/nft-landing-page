@@ -5,6 +5,8 @@ import viteLogo from "/vite.svg";
 import GlobalStyles from "./styles/GlobalStyles";
 import NavBar from "./components/NavBar";
 import MainSection from "./components/MainSection";
+import SelectedDrops from "./components/SelectedDrops";
+import TopCollections from "./components/TopCollection";
 
 import "./App.css";
 
@@ -14,6 +16,8 @@ function App() {
       <GlobalStyles />
       <NavBar />
       <MainSection/>
+      <SelectedDrops/>
+      <TopCollections/>
     </>
   );
 }
