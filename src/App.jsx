@@ -7,6 +7,8 @@ import NavBar from "./components/NavBar";
 import MainSection from "./components/MainSection";
 import SelectedDrops from "./components/SelectedDrops";
 import TopCollections from "./components/TopCollection";
+import TrendingNfts from "./components/TrendingNfts";
+import ResourcesSection from "./components/ResourcesSection";
 
 import "./App.css";
 
@@ -18,6 +20,8 @@ function App() {
       <MainSection/>
       <SelectedDrops/>
       <TopCollections/>
+      <TrendingNfts/>
+      <ResourcesSection/>
     </>
   );
 }

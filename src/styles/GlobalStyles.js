@@ -25,6 +25,21 @@ body {
     }
   }
 }
+.hoveredBtn{
+    outline: none;
+    border: 0.5px solid #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(to right, #0500fa, #e01e5a);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease;
+    border-radius: 8px;
+}
+.hoveredBtn:hover {
+    background-size: 100% 100%;
+  }
 
 `;
 export default GlobalStyles;
