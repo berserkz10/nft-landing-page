@@ -41,18 +41,18 @@ const CardsContainer = styled.div`
     border: #ffffff71 solid 1px;
     display: flex;
     gap: 20px;
-    div{
+    > div{
         width: 49%;
         position: relative;
     }
-    div:nth-of-type(1){
+    > div:nth-of-type(1){
         position: relative;
         >img{
             width: 100%;
             height: 88%;
         }
     }
-    div:nth-of-type(2){
+    > div:nth-of-type(2){
 
     }
 `
@@ -62,6 +62,8 @@ const FirstCard = styled.div`
     border: #ffffff71 solid 1px;
     z-index: 1;
     position: absolute;
+    bottom: 0px;
+    left: 17px;
 `
 const ResourcesSection = () => {
     return(
