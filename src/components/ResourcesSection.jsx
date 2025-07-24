@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 const SectionHolder = styled.section`
   position: relative;
   height: 650px;
@@ -36,51 +36,160 @@ const ContentContainer = styled.section`
   }
 `;
 const CardsContainer = styled.div`
-    flex: 1;
-    width: 100%;
-    border: #ffffff71 solid 1px;
-    display: flex;
-    gap: 20px;
-    > div{
-        width: 49%;
-        position: relative;
+  flex: 1;
+  width: 100%;
+  border: #ffffff71 solid 1px;
+  display: flex;
+  gap: 20px;
+  > div {
+    width: 49%;
+    position: relative;
+  }
+  > div:nth-of-type(1) {
+    position: relative;
+    > img {
+      width: 100%;
+      height: 88%;
     }
-    > div:nth-of-type(1){
-        position: relative;
-        >img{
-            width: 100%;
-            height: 88%;
-        }
-    }
-    > div:nth-of-type(2){
-
-    }
-`
+  }
+  > div:nth-of-type(2) {
+  }
+`;
 const FirstCard = styled.div`
-    width: 550px;
-    height: 210px;
-    border: #ffffff71 solid 1px;
-    z-index: 1;
-    position: absolute;
-    bottom: 0px;
-    left: 17px;
-`
+  width: 550px;
+  height: 210px;
+  z-index: 1;
+  position: absolute;
+  bottom: 0px;
+  left: 17px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #1e1b33;
+  border-radius: 8px;
+  > div {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  button {
+    width: 114px;
+    height: 30px;
+    border: 0.5px solid #ffffffa9;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(to right, #0500fa, #e01e5a);
+    border-radius: 8px;
+    margin-right: 5px;
+  }
+  img {
+    margin-right: 5px;
+  }
+  span {
+    opacity: 0.6;
+  }
+  h4 {
+    font-size: 23px;
+    font-weight: 500;
+  }
+`;
+const SecondCard = styled.div`
+  width: 550px;
+  height: 210px;
+  z-index: 1;
+  padding: 32px;
+  display: flex;
+
+  justify-content: space-between;
+  background-color: #1e1b33;
+  border-radius: 8px;
+  > img {
+    width: 152px;
+    height: 152px;
+  }
+`;
+const CardInfoHolder = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  > div {
+    display: flex;
+    align-items: center;
+  }
+  button:nth-of-type(1) {
+    width: 87px;
+  }
+  button:nth-of-type(2) {
+    width: 75px;
+  }
+  h4 {
+    font-size: 23px;
+    font-weight: 500;
+  }
+  img{
+    margin-right: 5px;
+  }
+  span{
+    opacity: 0.6;
+  }
+`;
 const ResourcesSection = () => {
-    return(
-        <SectionHolder>
-            <NftHeader>NFTs</NftHeader>
-            <ContentContainer>
-                <h3>Resources for getting started</h3>
-                <CardsContainer>
-                    <div>
-                        <img src="/giant.png" alt="" />
-                        <FirstCard></FirstCard>
-                    </div>
-                    <div></div>
-                </CardsContainer>
-            </ContentContainer>
-            
-        </SectionHolder>
-    )
-}
-export default ResourcesSection
+  return (
+    <SectionHolder>
+      <NftHeader>NFTs</NftHeader>
+      <ContentContainer>
+        <h3>Resources for getting started</h3>
+        <CardsContainer>
+          <div>
+            <img src="/giant.png" alt="" />
+            <FirstCard>
+              <div>
+                <button>NFT Token</button>
+                <p>
+                  <img src="/icons/ant-design_comment-outlined.png" alt="" />
+                  No Comment
+                </p>
+              </div>
+              <h4>The Seven Secrets I should have received NFTs. </h4>
+              <div>
+                <img src="/profile1.png" alt="" />
+                <p>
+                  Election Season <br />
+                  <span>June 2, 2022</span>
+                </p>
+              </div>
+            </FirstCard>
+          </div>
+          <div>
+            <SecondCard>
+              <img src="/bg1.png" alt="" />
+              <CardInfoHolder>
+                <div>
+                  <button className="cardsBtns">Game</button>
+                  <button className="cardsBtns">NFT</button>
+                  <p>
+                    <img src="/icons/ant-design_comment-outlined.png" alt="" />
+                    No Comment
+                  </p>
+                </div>
+                <h4>I think I minted duplicate NFTs</h4>
+                <div>
+                  <img src="/profile2.png" alt="" />
+                  <p>
+                    Courtney Henry <br />
+                    <span>May 27, 2022</span>
+                  </p>
+                </div>
+              </CardInfoHolder>
+            </SecondCard>
+            <SecondCard></SecondCard>
+          </div>
+        </CardsContainer>
+      </ContentContainer>
+    </SectionHolder>
+  );
+};
+export default ResourcesSection;

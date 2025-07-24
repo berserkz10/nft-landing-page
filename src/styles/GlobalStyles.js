@@ -40,6 +40,15 @@ body {
 .hoveredBtn:hover {
     background-size: 100% 100%;
   }
-
+.cardsBtns{
+    height: 30px;
+    border: 0.5px solid #1e1b33;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(to right, #0500fa, #e01e5a);
+    border-radius: 8px;
+    margin-right: 5px;
+}
 `;
 export default GlobalStyles;
