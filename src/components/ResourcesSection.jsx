@@ -108,6 +108,7 @@ const SecondCard = styled.div`
   > img {
     width: 152px;
     height: 152px;
+    margin-right: 5px;
   }
 `;
 const CardInfoHolder = styled.div`

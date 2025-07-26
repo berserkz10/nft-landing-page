@@ -9,6 +9,10 @@ import SelectedDrops from "./components/SelectedDrops";
 import TopCollections from "./components/TopCollection";
 import TrendingNfts from "./components/TrendingNfts";
 import ResourcesSection from "./components/ResourcesSection";
+import PopularSection from "./components/PopulartSection";
+import CreateSection from "./components/CreateSection";
+import BrandsNames from "./components/BrandsName";
+import Footer from "./components/Footer";
 
 import "./App.css";
 
@@ -22,6 +26,10 @@ function App() {
       <TopCollections/>
       <TrendingNfts/>
       <ResourcesSection/>
+      <PopularSection/>
+      <CreateSection/>
+      <BrandsNames/>
+      <Footer/>
     </>
   );
 }
