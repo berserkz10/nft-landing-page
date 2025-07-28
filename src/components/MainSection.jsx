@@ -14,7 +14,7 @@ const SectionContainer = styled.section`
 const SliderContainer = styled.div`
   width: 100%;
   height: 674px;
-  border: 1px solid white;
+  
   display: flex;
 `;
 const HeroSection = styled.div`
@@ -22,7 +22,7 @@ const HeroSection = styled.div`
   flex-direction: column;
   width: 60%;
   height: 100%;
-  border: 1px solid purple;
+  
   padding-top: 131px;
 `;
 const TextContainer = styled.section`
@@ -176,7 +176,7 @@ const DotsContainer = styled.div`
 const MainImageContainer = styled.div`
   width: 40%;
   height: 100%;
-  border: 1px solid red;
+ 
 
   img {
     width: 100%;

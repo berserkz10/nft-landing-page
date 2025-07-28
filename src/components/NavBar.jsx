@@ -2,7 +2,6 @@ import styled from "styled-components";
 const NavbarHolder = styled.nav`
   width: 100%;
   height: 84px;
-  border: 1px white solid;
   background-color: transparent;
   display: flex;
   justify-content: space-between;
@@ -42,7 +41,7 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 0.5px solid white;
+  
   width: 321px;
   height: 100%;
   margin-left: 93px;
