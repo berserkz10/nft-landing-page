@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { openSea } from "./moralis/openSea";
 const SectionHolder = styled.section`
   position: relative;
   height: 640px;
@@ -88,32 +90,65 @@ const InfoContainer = styled.div`
 `;
 
 const TrendingNfts = () => {
+  const [collections, setCollection] = useState([]);
+  const fourNfts = (res) => {
+    const result = [];
+    for (let i = 0; i < res.length; i++) {
+      if (res[i].image_url && res[i].name.length < 20) {
+        result.push(res[i]);
+        console.log(res[i].name)
+      }
+      if (result.length === 4) break;
+    }
+    return result;
+  };
+
+  useEffect(() => {
+    const fetchCollections = async () => {
+      const res = await openSea(); // this should return an array
+      const firstFourWithImages = fourNfts(res);
+      setCollection(firstFourWithImages);
+    };
+    fetchCollections();
+  }, []);
+  //
+  useEffect(() => {
+    console.log("Updated collections:", collections);
+  }, [collections]);
   return (
     <SectionHolder>
       <NftHeader>NFTs</NftHeader>
       <ContentContainer>
         <h3>Trending NFTs</h3>
         <CardContainer>
-          <Cards>
-            <img src="/trending.png" alt="" />
-            <div>
-              <p>By Ya Chin-Ho</p>
-              <h4>Venture Capitalist</h4>
-            </div>
-            <InfoContainer>
-              <section>
-                <span>From</span>
-                <p>Not for sale</p>
-              </section>
-              <section>
-                <span>Highest bid</span>
-                <p>2.835 ETH</p>
-              </section>
-            </InfoContainer>
-          </Cards>
-          <Cards></Cards>
-          <Cards></Cards>
-          <Cards></Cards>
+          {collections.map((item, index) => (
+            <Cards key={index}>
+              <img src={item.image_url || "/fallback.png"} alt={item.name} />
+              <div>
+                <p>By {item.creator?.user?.username || "Unknown Creator"}</p>{" "}
+                {/* fallback if undefined */}
+                <h4>{item.name}</h4>
+              </div>
+              <InfoContainer>
+                <section>
+                  <span>From</span>
+                  <p>
+                    {item.stats?.floor_price
+                      ? `${item.stats.floor_price} ETH`
+                      : "Not for sale"}
+                  </p>
+                </section>
+                <section>
+                  <span>Highest bid</span>
+                  <p>
+                    {item.stats?.total_volume
+                      ? `${item.stats.total_volume.toFixed(2)} ETH`
+                      : "No bids"}
+                  </p>
+                </section>
+              </InfoContainer>
+            </Cards>
+          ))}
         </CardContainer>
       </ContentContainer>
     </SectionHolder>

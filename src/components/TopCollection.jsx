@@ -1,5 +1,9 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import fetchingData from "./FetchingData";
+import { useEffect, useState } from "react";
+import { loadCollections } from "./moralis/moralisService.js";
+import { openSea } from "./moralis/openSea.js";
 
 const SectionContainer = styled.div`
   width: 100%;
@@ -85,7 +89,7 @@ const Card = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #1e1b33;
- cursor: pointer;
+  cursor: pointer;
   > img {
     border-radius: 50%;
     width: 50px;
@@ -100,7 +104,22 @@ const Card = styled.div`
 `;
 
 const TopCollections = () => {
-  fetchingData("eth", "7d");
+  const [collections, setCollections] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+      const fetchData = async () => {
+        const data = await loadCollections();
+        setCollections(data);
+      };
+      fetchData();
+  }, []);
+  //
+  useEffect(() => {
+    //openSea()
+  }, []);
+  //fetchingData("eth", "7d");
   return (
     <SectionContainer>
       <NftHeader>NFTs</NftHeader>
@@ -115,28 +134,22 @@ const TopCollections = () => {
           <button className="hoveredBtn">Ethereum</button>
         </CollectionTimeHolder>
         <CardsContainer>
-          <Card>
-            <img src="/Ellipse 4.png" />
-            <div>
-              <p>Bored Ape Yacht Club</p>
-              <span>
-                <img src="/icons/greenShape.png" alt="green" />
-                10,450.00
-              </span>
-            </div>
-            <div>
-              <span>2.9k ETH</span>
-              <span>+10.00%</span>
-            </div>
-          </Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
+          {collections.map((nft, index) => (
+            <Card key={index}>
+              <img src={nft.collection_image} />
+              <div>
+                <p>{nft.collection_title}</p>
+                <span>
+                  <img src="/icons/greenShape.png" alt="green" />
+                  {nft.floor_price_usd}
+                </span>
+              </div>
+              <div>
+                <span>{nft.volume_usd} USD</span>
+                <span>{nft.floor_price_24hr_percent_change}</span>
+              </div>
+            </Card>
+          ))}
         </CardsContainer>
         <CollectionsBtn>See All Collections</CollectionsBtn>
       </ContentContainer>

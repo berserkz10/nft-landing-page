@@ -1,5 +1,7 @@
 //const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjgxYTI4OGFkLTFjMmQtNDZhNS1hNGFhLTQyNDM0OGNkOGQ0NCIsIm9yZ0lkIjoiNDU5NDY4IiwidXNlcklkIjoiNDcyNzA5IiwidHlwZUlkIjoiNTlhNjI3ZjUtZmJmZC00MmM4LWFjZTgtNDY0MWFiNDdhOWQzIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NTI1ODczMTIsImV4cCI6NDkwODM0NzMxMn0.N6hrEX3jILYGnX6Yxe4EyK2BlpVURADWceE2J47Evys";
-const BASE_URL = "https://deep-index.moralis.io/api/v2.2";
+//const BASE_URL = "https://deep-index.moralis.io/api/v2.2";
+
+import Moralis from 'moralis';
 
 const fetchingData = async ({ chain = "eth", limit = 10 }) => {
   // Correct endpoint for getting top NFT collections
