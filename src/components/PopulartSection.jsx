@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import { openSea } from "./moralis/openSea";
 const SectionHolder = styled.section`
   position: relative;
   height: 580px;
   width: 100%;
-  border: white solid 1px;
+  //border: white solid 1px;
   padding: 0px 115px 0px 115px;
 `;
 const NftHeader = styled.h1`
@@ -26,7 +29,7 @@ const ContentContainer = styled.section`
   left: 0px;
   width: 100%;
   height: 100%;
-  border: 1px solid white;
+  //border: 1px solid white;
   padding: 30px 115px 0px 115px;
   display: flex;
   justify-content: space-between;
@@ -65,7 +68,7 @@ const CardsContainer = styled.div`
   flex: 1;
   width: 100%;
   justify-content: space-between;
-  border: 1px solid white;
+  // border: 1px solid white;
 `;
 const Card = styled.div`
   width: 24%;
@@ -83,30 +86,30 @@ const Card = styled.div`
     font-size: 21px;
     font-weight: 500;
   }
-  p:nth-of-type(1){
+  p:nth-of-type(1) {
     color: #03db80;
-    span{
-        color: #03db80;
-        opacity: 0.8;
+    span {
+      color: #03db80;
+      opacity: 0.8;
     }
   }
-  >div:nth-of-type(1){
+  > div:nth-of-type(1) {
     display: flex;
     justify-content: space-between;
-    img{
-        margin-right: 5px;
+    img {
+      margin-right: 5px;
     }
   }
-  hr{
+  hr {
     width: 100%;
     height: 1px;
-    border: none; 
+    border: none;
     background-color: #e7e7e773;
   }
-  button:last-child{
+  button:last-child {
     width: 105px;
     height: 38px;
-    border: 0.5px #E7E7E766 solid;
+    border: 0.5px #e7e7e766 solid;
     background-color: transparent;
     border-radius: 8px;
     font-size: 14px;
@@ -116,8 +119,34 @@ const Card = styled.div`
   }
 `;
 const PopularSection = () => {
+  const [collections, setCollections] = useState([]);
+  const fourNfts = (res) => {
+    const result = [];
+    for (let i = 0; i < res.length; i++) {
+      const nft = res[i];
+
+      if (!nft.image_url) continue;
+
+      const isWalletAddress = nft.name?.startsWith("0x");
+
+      if (!isWalletAddress) {
+        result.push(nft);
+      }
+
+      if (result.length === 4) break;
+    }
+    return result;
+  };
+  useEffect(() => {
+    const fetchingData = async () => {
+      const res = await openSea();
+      const firstFour = fourNfts(res);
+      setCollections(firstFour);
+    };
+    fetchingData();
+  }, []);
   return (
-    <SectionHolder>
+    <SectionHolder className="componentHolder">
       <NftHeader>NFTs</NftHeader>
       <ContentContainer>
         <div>
@@ -132,19 +161,25 @@ const PopularSection = () => {
         </div>
 
         <CardsContainer>
-          <Card>
-            <img src="./cardPhoto1.png" alt="" />
-            <h4>Election Season</h4>
-            <div>
-                <p><img src="/icons/ethShape.png" alt="" /> <span>From</span> 0.05 ETH</p>
-                <p><img src="/icons/heart.png" alt="" />35</p>
-            </div>
-            <hr />
-            <button>Place bid</button>
-          </Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
+          {collections.map((item, index) => (
+            <Card key={index}>
+              <img src={item.image_url || "/fallback.png"} alt={item.name} />
+              <p>By {item.creator?.user?.username || "Unknown Creator"}</p>
+              <h4>{item.name}</h4>
+              <div>
+                <p>
+                  <img src="/icons/ethShape.png" alt="" /> <span>From</span>{" "}
+                  0.05 ETH
+                </p>
+                <p>
+                  <img src="/icons/heart.png" alt="" />
+                  35
+                </p>
+              </div>
+              <hr />
+              <button>Place bid</button>
+            </Card>
+          ))}
         </CardsContainer>
       </ContentContainer>
     </SectionHolder>

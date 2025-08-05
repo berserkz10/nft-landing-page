@@ -14,7 +14,6 @@ const ContentHolder = styled.div`
   padding: 115px 115px 0px 115px;
   width: 100%;
   height: 100%;
-  border: 1px white solid;
   h5 {
     font-size: 24px;
     font-weight: 500;

@@ -8,7 +8,7 @@ import { openSea } from "./moralis/openSea.js";
 const SectionContainer = styled.div`
   width: 100%;
   height: 600px;
-  border: white solid 1px;
+  //border: white solid 1px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +34,7 @@ const ContentContainer = styled.section`
   left: 0px;
   width: 100%;
   height: 100%;
-  border: 1px solid white;
+  //border: 1px solid white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,7 +43,7 @@ const ContentContainer = styled.section`
 const CollectionTimeHolder = styled.section`
   width: 100%;
   height: 100px;
-  border: 1px solid black;
+  //border: 1px solid black;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -83,23 +83,29 @@ const Card = styled.div`
   width: 32%;
   height: 100px;
   padding: 7px;
-  border: 1px solid white;
+  border: 1px solid #ffffff3d;
   border-radius: 8px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: #1e1b33;
   cursor: pointer;
+  img{
+    margin-right: 5px;
+  }
   > img {
     border-radius: 50%;
     width: 50px;
     height: 50px;
+    margin-right: 13px;
   }
   div {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+  }
+  > div:last-of-type {
+    margin-left: auto;
   }
 `;
 
@@ -109,11 +115,11 @@ const TopCollections = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-      const fetchData = async () => {
-        const data = await loadCollections();
-        setCollections(data);
-      };
-      fetchData();
+    const fetchData = async () => {
+      const data = await loadCollections();
+      setCollections(data);
+    };
+    fetchData();
   }, []);
   //
   useEffect(() => {
@@ -121,7 +127,7 @@ const TopCollections = () => {
   }, []);
   //fetchingData("eth", "7d");
   return (
-    <SectionContainer>
+    <SectionContainer className="componentHolder">
       <NftHeader>NFTs</NftHeader>
       <ContentContainer>
         <CollectionTimeHolder>

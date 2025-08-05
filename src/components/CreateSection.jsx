@@ -36,7 +36,7 @@ const TextContainer = styled.section`
 `;
 const CreateSection = () => {
   return (
-    <SectionHolder>
+    <SectionHolder >
       <ImageContainer>
         <ColoredCircle />
         <img src="./ethereumPic.png" alt="" />

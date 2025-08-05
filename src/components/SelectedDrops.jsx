@@ -1,5 +1,9 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import ColoredCircle from "./ColoredCircle";
+import { useState, useEffect } from "react";
+import { notableDrops } from "./moralis/openSea";
+
 const SectionHolder = styled.div`
   display: flex;
   margin-top: 107px;
@@ -7,7 +11,7 @@ const SectionHolder = styled.div`
   height: 579px;
   width: 100%;
   padding: 0px 115px 0px 115px;
-  border: 1px white solid;
+  //border: 1px white solid;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -32,7 +36,7 @@ const ContentContainer = styled.section`
   left: 0px;
   width: 100%;
   height: 100%;
-  border: 1px solid white;
+  //border: 1px solid white;
   pointer-events: none;
   padding-top: 27px;
   h2 {
@@ -98,91 +102,85 @@ const Card = styled.div`
   }
 `;
 const SelectedDrops = () => {
+  const [drops, setDrops] = useState([]);
+
+  const fourNfts = (res) => {
+    const result = [];
+    for (let i = 0; i < res.length; i++) {
+      const asset = res[i]?.asset;
+      if (!asset) continue;
+
+      if (asset.display_image_url && asset.name && asset.name.length < 30) {
+        result.push(asset);
+      }
+      if (result.length === 4) break;
+    }
+    return result;
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await notableDrops();
+      const firstFour = fourNfts(result);
+      console.log("events:", firstFour);
+      setDrops(firstFour);
+    };
+    fetchData();
+  }, []);
   return (
-    <SectionHolder>
+    <SectionHolder className="componentHolder">
       <NftHeader>NFTs</NftHeader>
       <ColoredCircle $top="103px" $right="182px" />
       <ContentContainer>
         <h2>Selected notable drops</h2>
       </ContentContainer>
       <CardHolder>
-        <Card>
-          <img src="/cardPic.png" alt="" />
-          <div>
-            <section>
-              <h3>Science Jobs</h3>
-              <p>From 17.59 Flow</p>
-            </section>
-            <section>
-              <span>
-                <img src="/heart.png" alt="" />
-                24
-              </span>
-              <img src="/Group.png" alt="" />
-            </section>
-          </div>
-          <button>Live now</button>
-        </Card>
-        <Card>
-          <img src="/cardPic.png" alt="" />
-          <div>
-            <section>
-              <h3>Science Jobs</h3>
-              <p>
-                <img src="/icons/greenShape.png" alt="" />
-                From 17.59 Flow
-              </p>
-            </section>
-            <section>
-              <span>
-                <img src="/heart.png" alt="" />
-                24
-              </span>
-              <img src="/Group.png" alt="" />
-            </section>
-          </div>
-          <button>Live now</button>
-        </Card>
-        <Card>
-          <img src="/cardPic.png" alt="" />
-          <div>
-            <section>
-              <h3>Science Jobs</h3>
-              <p>
-                <img src="/icons/greenShape.png" alt="" />
-                From 17.59 Flow
-              </p>
-            </section>
-            <section>
-              <span>
-                <img src="/heart.png" alt="" />
-                24
-              </span>
-              <img src="/Group.png" alt="" />
-            </section>
-          </div>
-          <button>Live now</button>
-        </Card>
-        <Card>
-          <img src="/cardPic.png" alt="" />
-          <div>
-            <section>
-              <h3>Science Jobs</h3>
-              <p>
-                <img src="/icons/greenShape.png" alt="" />
-                From 17.59 Flow
-              </p>
-            </section>
-            <section>
-              <span>
-                <img src="/heart.png" alt="" />
-                24
-              </span>
-              <img src="/Group.png" alt="" />
-            </section>
-          </div>
-          <button>Live now</button>
-        </Card>
+        {drops.map((drop, index) => (
+          <Card key={index}>
+            {drop.display_animation_url ? (
+              <video
+                src={drop.display_animation_url}
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: "8px",
+                }}
+              />
+            ) : (
+              <img
+                src={drop.display_image_url || "/cardPic.png"}
+                alt={drop.name}
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: "8px",
+                }}
+              />
+            )}
+            <div>
+              <section>
+                <h3>{drop.name || "Untitled Drop"}</h3>
+                <p>
+                  <img src="/icons/greenShape.png" alt="" />
+                  From {drop.floor_price ?? "N/A"} Flow
+                </p>
+              </section>
+              <section>
+                <span>
+                  <img src="/heart.png" alt="" />
+                  {drop.likes || 10}
+                </span>
+                <img src="/Group.png" alt="" />
+              </section>
+            </div>
+            <button>Live now</button>
+          </Card>
+        ))}
       </CardHolder>
     </SectionHolder>
   );

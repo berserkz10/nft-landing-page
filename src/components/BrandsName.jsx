@@ -10,7 +10,7 @@ const SectionHolder = styled.div`
 `
 const BrandsNames = () => {
 return(
-    <SectionHolder>
+    <SectionHolder className="componentHolder">
         <img src="/BrandsName.png" alt="brands" />
     </SectionHolder>
 )

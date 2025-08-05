@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { openSea } from "./moralis/openSea";
+import ColoredCircle from "./ColoredCircle";
 const SectionHolder = styled.section`
   position: relative;
   height: 640px;
   width: 100%;
-  border: white solid 1px;
+ // border: white solid 1px;
   padding: 0px 115px 0px 115px;
 `;
 const NftHeader = styled.h1`
@@ -26,7 +27,7 @@ const ContentContainer = styled.section`
   left: 0px;
   width: 100%;
   height: 100%;
-  border: 1px solid white;
+  //border: 1px solid white;
   padding: 0px 115px 0px 115px;
   display: flex;
   flex-direction: column;
@@ -92,15 +93,22 @@ const InfoContainer = styled.div`
 const TrendingNfts = () => {
   const [collections, setCollection] = useState([]);
   const fourNfts = (res) => {
-    const result = [];
-    for (let i = 0; i < res.length; i++) {
-      if (res[i].image_url && res[i].name.length < 20) {
-        result.push(res[i]);
-        console.log(res[i].name)
-      }
-      if (result.length === 4) break;
+  const result = [];
+  for (let i = 0; i < res.length; i++) {
+    const nft = res[i];
+
+    // Skip items without image or with a name that's a wallet address
+    if (!nft.image_url) continue;
+
+    const isWalletAddress = nft.name?.startsWith("0x");
+
+    if (!isWalletAddress) {
+      result.push(nft);
     }
-    return result;
+
+    if (result.length === 4) break;
+  }
+  return result;
   };
 
   useEffect(() => {
@@ -116,8 +124,9 @@ const TrendingNfts = () => {
     console.log("Updated collections:", collections);
   }, [collections]);
   return (
-    <SectionHolder>
+    <SectionHolder className="componentHolder">
       <NftHeader>NFTs</NftHeader>
+      <ColoredCircle $top="0px" $right="0px" />
       <ContentContainer>
         <h3>Trending NFTs</h3>
         <CardContainer>

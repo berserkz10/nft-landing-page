@@ -50,5 +50,8 @@ body {
     border-radius: 8px;
     margin-right: 5px;
 }
+.componentHolder{
+  margin-bottom: 115px;
+}
 `;
 export default GlobalStyles;

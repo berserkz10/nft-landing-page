@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import ColoredCircle from "./ColoredCircle";
 const SectionHolder = styled.section`
   position: relative;
   height: 650px;
   width: 100%;
-  border: white solid 1px;
+  //border: white solid 1px;
   padding: 0px 115px 0px 115px;
 `;
 const NftHeader = styled.h1`
@@ -24,7 +25,7 @@ const ContentContainer = styled.section`
   left: 0px;
   width: 100%;
   height: 100%;
-  border: 1px solid white;
+  //border: 1px solid white;
   padding: 0px 115px 0px 115px;
   display: flex;
   flex-direction: column;
@@ -38,7 +39,7 @@ const ContentContainer = styled.section`
 const CardsContainer = styled.div`
   flex: 1;
   width: 100%;
-  border: #ffffff71 solid 1px;
+  //border: #ffffff71 solid 1px;
   display: flex;
   gap: 20px;
   > div {
@@ -53,6 +54,9 @@ const CardsContainer = styled.div`
     }
   }
   > div:nth-of-type(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 `;
 const FirstCard = styled.div`
@@ -130,17 +134,18 @@ const CardInfoHolder = styled.div`
     font-size: 23px;
     font-weight: 500;
   }
-  img{
+  img {
     margin-right: 5px;
   }
-  span{
+  span {
     opacity: 0.6;
   }
 `;
 const ResourcesSection = () => {
   return (
-    <SectionHolder>
+    <SectionHolder className="componentHolder">
       <NftHeader>NFTs</NftHeader>
+      <ColoredCircle/>
       <ContentContainer>
         <h3>Resources for getting started</h3>
         <CardsContainer>
@@ -186,7 +191,27 @@ const ResourcesSection = () => {
                 </div>
               </CardInfoHolder>
             </SecondCard>
-            <SecondCard></SecondCard>
+            <SecondCard>
+              <img src="/bg1.png" alt="" />
+              <CardInfoHolder>
+                <div>
+                  <button className="cardsBtns">Game</button>
+                  <button className="cardsBtns">NFT</button>
+                  <p>
+                    <img src="/icons/ant-design_comment-outlined.png" alt="" />
+                    No Comment
+                  </p>
+                </div>
+                <h4>The Marketplace isn’t working</h4>
+                <div>
+                  <img src="/jackSmith.png" alt="" />
+                  <p>
+                    Courtney Henry <br />
+                    <span>May 27, 2022</span>
+                  </p>
+                </div>
+              </CardInfoHolder>
+            </SecondCard>
           </div>
         </CardsContainer>
       </ContentContainer>
