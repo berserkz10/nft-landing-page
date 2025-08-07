@@ -143,7 +143,7 @@ const PopularSection = () => {
       const firstFour = fourNfts(res);
       setCollections(firstFour);
     };
-    fetchingData();
+    //fetchingData();
   }, []);
   return (
     <SectionHolder className="componentHolder">

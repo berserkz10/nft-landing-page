@@ -119,7 +119,7 @@ const TopCollections = () => {
       const data = await loadCollections();
       setCollections(data);
     };
-    fetchData();
+   // fetchData();
   }, []);
   //
   useEffect(() => {

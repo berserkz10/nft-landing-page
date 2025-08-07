@@ -117,7 +117,7 @@ const TrendingNfts = () => {
       const firstFourWithImages = fourNfts(res);
       setCollection(firstFourWithImages);
     };
-    fetchCollections();
+    //fetchCollections();
   }, []);
   //
   useEffect(() => {

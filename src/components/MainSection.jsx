@@ -9,32 +9,56 @@ const SectionContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media (max-width: 1410px) {
+    h1 {
+      font-size: 54px !important;
+    }
+  }
 `;
 
 const SliderContainer = styled.div`
   width: 100%;
   height: 674px;
-  
   display: flex;
+  @media (max-width: 1400px) {
+    justify-content: space-between;
+  }
 `;
 const HeroSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 60%;
   height: 100%;
-  
+
   padding-top: 131px;
+  @media (max-width: 1300px) {
+    padding-top: 71px;
+  }
+  @media (max-width: 1200px) {
+    padding-top: 0px;
+  }
 `;
 const TextContainer = styled.section`
   width: 100%;
   height: fit-content;
-
+  @media (max-width: 1410px) {
+    h1 {
+      font-size: 54px !important;
+    }
+  }
+  @media (max-width: 1200px) {
+    h1{
+      font-size: 41px !important;
+    }
+    p{
+      font-size: 21px;
+      max-width: 433px;
+    }
+  }
   h1 {
     font-size: 64px;
     font-weight: 700;
-    font-style: bold;
     line-height: 80px;
-    letter-spacing: -1.4%;
   }
   span {
     background: linear-gradient(to right, #0500fa, #e01e5a);
@@ -113,6 +137,31 @@ const ImageHolder = styled.div`
   justify-content: center;
   align-items: center;
   background-color: transparent;
+  @media (max-width: 1400px) {
+    &.big-circle {
+      left: 584.99px;
+    }
+    &.small-circle {
+      left: 428px;
+    }
+  }
+  @media (max-width: 1300px) {
+    &.big-circle {
+      left: 459px;
+    }
+    &.small-circle {
+      left: 357px;
+    }
+  }
+  @media (max-width: 1100px) {
+    &.big-circle {
+      left: 403px;
+    }
+    &.small-circle {
+      left: 316px;
+    }
+
+  }
   img {
     width: 90%;
     height: 90%;
@@ -157,6 +206,12 @@ const DotsContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
+  @media (max-width: 1400px) {
+    left: 653px;
+  }
+  @media (max-width: 1277px) {
+    left: 539px;
+  }
 
   button {
     width: 16px;
@@ -176,8 +231,10 @@ const DotsContainer = styled.div`
 const MainImageContainer = styled.div`
   width: 40%;
   height: 100%;
- 
 
+  @media (max-width: 1100px) {
+    height: 80%;
+  }
   img {
     width: 100%;
     height: 100%;
@@ -198,7 +255,18 @@ const ArrowHolder = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  @media (max-width: 1382px) {
+    right: 521px !important;
+  }
+  @media (max-width: 1300px) {
+    right: 485px !important;
+  }
+  @media (max-width: 1200px) {
+    right: 434px!important;
+  }
+    @media (max-width: 1100px) {
+    right: 400px!important;
+  }
   img {
     width: 48px;
     height: 35px;
@@ -209,7 +277,7 @@ const StatisticsHolder = styled.section`
   height: 76px;
   display: flex;
   justify-content: space-between;
-  border-bottom: 0.5px solid #E7E7E73D;
+  border-bottom: 0.5px solid #e7e7e73d;
 
   p {
     max-width: 387px;
@@ -272,6 +340,7 @@ const MainSection = () => {
             <p>Learn more about Nftico</p>
           </LearnMoreContainer>
           <ImageHolder
+            className="small-circle"
             $width="86px"
             $height="86px"
             $top="521.84px"
@@ -281,6 +350,7 @@ const MainSection = () => {
             <img src={getImage(-1)} alt="circle 1" />
           </ImageHolder>
           <ImageHolder
+            className="big-circle"
             $width="156px"
             $height="156px"
             $top="407.53px"

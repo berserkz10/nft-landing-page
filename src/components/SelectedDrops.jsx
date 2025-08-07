@@ -124,7 +124,7 @@ const SelectedDrops = () => {
       console.log("events:", firstFour);
       setDrops(firstFour);
     };
-    fetchData();
+    //fetchData();
   }, []);
   return (
     <SectionHolder className="componentHolder">
