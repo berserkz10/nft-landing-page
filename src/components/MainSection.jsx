@@ -47,12 +47,22 @@ const TextContainer = styled.section`
     }
   }
   @media (max-width: 1200px) {
-    h1{
+    h1 {
       font-size: 41px !important;
+      margin-bottom: 20px;
     }
-    p{
-      font-size: 21px;
+    p {
+      font-size: 21px !important;
       max-width: 433px;
+    }
+    @media (max-width: 1000px) {
+      h1 {
+        font-size: 27px !important;
+        line-height: 37px !important;
+      }
+      p {
+        font-size: 16px !important;
+      }
     }
   }
   h1 {
@@ -160,7 +170,44 @@ const ImageHolder = styled.div`
     &.small-circle {
       left: 316px;
     }
-
+  }
+  @media (max-width: 1000px) {
+    &.big-circle {
+      width: 120px;
+      height: 120px;
+      left: 381px;
+      top: 292.53px;
+    }
+    &.small-circle {
+      left: 292px;
+      top: 408.53px;
+    }
+  }
+  @media (max-width: 800px) {
+    &.big-circle {
+      width: 120px;
+      height: 120px;
+      left: 334px;
+      top: 292.53px;
+    }
+    &.small-circle {
+      left: 252px;
+      top: 408.53px;
+    }
+  }
+  @media (max-width: 700px) {
+    &.big-circle {
+      width: 108px;
+      height: 108px;
+      left: 264px;
+      top: 292.53px;
+    }
+    &.small-circle {
+      left: 252px;
+      top: 408.53px;
+      width: 86px;
+      height: 86px;
+    }
   }
   img {
     width: 90%;
@@ -235,10 +282,17 @@ const MainImageContainer = styled.div`
   @media (max-width: 1100px) {
     height: 80%;
   }
+  @media (max-width: 1000px) {
+    width: 31%;
+    height: 61%;
+  }
+  @media (max-width: 700px) {
+    width: 205px;
+    height: 257px;
+  }
   img {
     width: 100%;
     height: 100%;
-
     object-fit: cover;
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
@@ -262,14 +316,34 @@ const ArrowHolder = styled.div`
     right: 485px !important;
   }
   @media (max-width: 1200px) {
-    right: 434px!important;
+    right: 434px !important;
   }
-    @media (max-width: 1100px) {
-    right: 400px!important;
+  @media (max-width: 1100px) {
+    right: 400px !important;
+  }
+  @media (max-width: 1000px) {
+    width: 50px;
+    height: 50px;
+    right: 312px !important;
+    top: 257px;
+  }
+  @media (max-width: 886px) {
+    right: 283px !important;
+  }
+  @media (max-width: 800px) {
+    right: 238px !important;
+  }
+  @media (max-width: 700px) {
+    right: 187px !important;
+    top: 184px;
   }
   img {
     width: 48px;
     height: 35px;
+    @media (max-width: 1000px) {
+      width: 34px;
+      height: 23px;
+    }
   }
 `;
 const StatisticsHolder = styled.section`
@@ -318,7 +392,7 @@ const MainSection = () => {
     images[(currentSlide + offset + images.length) % images.length];
 
   return (
-    <SectionContainer>
+    <SectionContainer id="section-container">
       <ColoredCircle />
       <SliderContainer>
         <HeroSection>

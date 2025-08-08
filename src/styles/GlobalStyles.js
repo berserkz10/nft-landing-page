@@ -53,5 +53,13 @@ body {
 .componentHolder{
   margin-bottom: 115px;
 }
+#section-container{
+  @media (max-width: 800px) {
+    padding: 0px 61px 0px 61px!important;
+  }
+  @media (max-width: 700px) {
+    padding: 0px 17px 0px 15px !important;
+  }
+}
 `;
 export default GlobalStyles;

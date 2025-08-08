@@ -6,6 +6,7 @@ const NavbarHolder = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 0px 115px 0px 115px;
+  overflow: hidden;
 `;
 const LogoHolder = styled.div`
   display: flex;
@@ -74,7 +75,7 @@ const Btn = styled.button`
 
 const NavBar = () => {
   return (
-    <NavbarHolder>
+    <NavbarHolder id="section-container">
       <LogoHolder>
         <Logo>N</Logo>
         <h3>NFTICO</h3>
