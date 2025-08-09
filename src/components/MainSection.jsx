@@ -14,6 +14,12 @@ const SectionContainer = styled.section`
       font-size: 54px !important;
     }
   }
+  @media (max-width: 1000px) {
+    height: 575px;
+  }
+  @media (max-width: 600px) {
+    height: 499px;
+  }
 `;
 
 const SliderContainer = styled.div`
@@ -209,6 +215,14 @@ const ImageHolder = styled.div`
       height: 86px;
     }
   }
+  @media (max-width: 600px) {
+    &.big-circle {
+      display: none;
+    }
+    &.small-circle {
+      display: none;
+    }
+  }
   img {
     width: 90%;
     height: 90%;
@@ -259,6 +273,13 @@ const DotsContainer = styled.div`
   @media (max-width: 1277px) {
     left: 539px;
   }
+  @media (max-width: 1000px) {
+    top: 527px;
+    left: 349px;
+  }
+  @media (max-width: 600px) {
+    display: none;
+  }
 
   button {
     width: 16px;
@@ -280,15 +301,18 @@ const MainImageContainer = styled.div`
   height: 100%;
 
   @media (max-width: 1100px) {
-    height: 80%;
+    height: 539px;
   }
   @media (max-width: 1000px) {
     width: 31%;
-    height: 61%;
+    height: 411px;
   }
   @media (max-width: 700px) {
     width: 205px;
     height: 257px;
+  }
+  @media (max-width: 600px) {
+    //display: none;
   }
   img {
     width: 100%;
@@ -337,6 +361,10 @@ const ArrowHolder = styled.div`
     right: 187px !important;
     top: 184px;
   }
+  @media (max-width: 600px) {
+    display: none;
+  }
+
   img {
     width: 48px;
     height: 35px;
@@ -352,7 +380,39 @@ const StatisticsHolder = styled.section`
   display: flex;
   justify-content: space-between;
   border-bottom: 0.5px solid #e7e7e73d;
-
+  @media (max-width: 1128px) {
+    p {
+      max-width: 255px !important;
+      font-size: 12px;
+    }
+    h3 {
+      font-size: 28px !important;
+    }
+  }
+  @media (max-width: 900px) {
+    p {
+      max-width: 255px !important;
+      font-size: 11px;
+    }
+    h3 {
+      font-size: 23px !important;
+    }
+  }
+  @media (max-width: 600px) {
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    > p {
+      /*max-width: 100% !important;
+      height: fit-content;*/
+      grid-column: 1 / -1; /* span full width */
+    }
+    > div {
+      /*width: 50%;
+      display: inline-block;
+      margin-bottom: 12px;*/
+    }
+  }
   p {
     max-width: 387px;
   }
