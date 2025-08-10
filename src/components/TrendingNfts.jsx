@@ -6,8 +6,15 @@ const SectionHolder = styled.section`
   position: relative;
   height: 640px;
   width: 100%;
- // border: white solid 1px;
+  // border: white solid 1px;
   padding: 0px 115px 0px 115px;
+  @media (max-width: 1000px) {
+    height: 1129px;
+    height: 2094px;
+  }
+  @media (max-width: 570px) {
+    height: 2094px;
+  }
 `;
 const NftHeader = styled.h1`
   font-size: 96px;
@@ -33,9 +40,13 @@ const ContentContainer = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
   h3 {
     font-size: 44px;
     font-weight: 500;
+    @media (max-width: 500px) {
+      font-size: 31px;
+    }
   }
 `;
 const CardContainer = styled.div`
@@ -46,6 +57,16 @@ const CardContainer = styled.div`
   border-radius: 8px;
   padding: 7px;
   gap: 5px;
+  @media (max-width: 1000px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 570px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const Cards = styled.div`
   width: 24%;
@@ -57,6 +78,33 @@ const Cards = styled.div`
   align-content: center;
   flex-wrap: wrap;
   padding: 14px;
+  @media (max-width: 1000px) {
+    width: 288px;
+    height: 499px;
+  }
+  @media (max-width: 600px) {
+    width: 264px;
+    height: 491px;
+    p {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 570px) {
+    width: 288px;
+    height: 499px;
+    p {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 570px) {
+    h3 {
+      font-size: 24px !important;
+    }
+    p {
+      font-size: 16px !important;
+    }
+  }
+
   > img {
     width: 100%;
     height: 220px;
@@ -93,22 +141,22 @@ const InfoContainer = styled.div`
 const TrendingNfts = () => {
   const [collections, setCollection] = useState([]);
   const fourNfts = (res) => {
-  const result = [];
-  for (let i = 0; i < res.length; i++) {
-    const nft = res[i];
+    const result = [];
+    for (let i = 0; i < res.length; i++) {
+      const nft = res[i];
 
-    // Skip items without image or with a name that's a wallet address
-    if (!nft.image_url) continue;
+      // Skip items without image or with a name that's a wallet address
+      if (!nft.image_url) continue;
 
-    const isWalletAddress = nft.name?.startsWith("0x");
+      const isWalletAddress = nft.name?.startsWith("0x");
 
-    if (!isWalletAddress) {
-      result.push(nft);
+      if (!isWalletAddress) {
+        result.push(nft);
+      }
+
+      if (result.length === 4) break;
     }
-
-    if (result.length === 4) break;
-  }
-  return result;
+    return result;
   };
 
   useEffect(() => {
@@ -117,17 +165,17 @@ const TrendingNfts = () => {
       const firstFourWithImages = fourNfts(res);
       setCollection(firstFourWithImages);
     };
-    //fetchCollections();
+    fetchCollections();
   }, []);
   //
   useEffect(() => {
     console.log("Updated collections:", collections);
   }, [collections]);
   return (
-    <SectionHolder className="componentHolder">
+    <SectionHolder id="section-container" className="componentHolder">
       <NftHeader>NFTs</NftHeader>
       <ColoredCircle $top="0px" $right="0px" />
-      <ContentContainer>
+      <ContentContainer id="section-container">
         <h3>Trending NFTs</h3>
         <CardContainer>
           {collections.map((item, index) => (

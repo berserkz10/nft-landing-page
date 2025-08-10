@@ -16,6 +16,9 @@ const SectionHolder = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+@media (max-width: 1000px) {
+  height: fit-content;
+}
 `;
 const NftHeader = styled.h1`
   font-size: 96px;
@@ -43,6 +46,9 @@ const ContentContainer = styled.section`
     font-size: 44px;
     font-weight: 500;
     line-height: 48px;
+    @media (max-width: 500px) {
+      font-size: 31px;
+    }
   }
 `;
 const CardHolder = styled.div`
@@ -50,16 +56,53 @@ const CardHolder = styled.div`
   flex: 1;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1000px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 570px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const Card = styled.div`
   width: 24%;
   height: 100%;
-  background-color: black;
+  background-color: #1e1b33;
   padding: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 1000px) {
+    width: 288px;
+    height: 499px;
+  }
+  @media (max-width: 600px) {
+    width: 264px;
+    height: 491px;
+    p {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 570px) {
+    width: 288px;
+    height: 499px;
+    p {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 570px) {
+    h3{
+      font-size: 24px!important;
+    }
+    p{
+      font-size: 16px!important;
+    }
+  }
+
   > img {
     width: 100%;
     height: 232px;
@@ -73,6 +116,9 @@ const Card = styled.div`
     font-weight: 500;
     line-height: 120%;
     letter-spacing: 0%;
+    @media (max-width: 600px) {
+      font-size: 21px;
+    }
   }
   section {
     display: flex;
@@ -84,7 +130,7 @@ const Card = styled.div`
     align-items: flex-start;
   }
   button {
-    width: 250px;
+    width: 100%;
     height: 38px;
     border-radius: 8px;
     outline: none;
@@ -124,10 +170,10 @@ const SelectedDrops = () => {
       console.log("events:", firstFour);
       setDrops(firstFour);
     };
-    //fetchData();
+    fetchData();
   }, []);
   return (
-    <SectionHolder className="componentHolder">
+    <SectionHolder id="section-container" className="componentHolder">
       <NftHeader>NFTs</NftHeader>
       <ColoredCircle $top="103px" $right="182px" />
       <ContentContainer>

@@ -13,6 +13,13 @@ const SectionContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+  @media (max-width: 1230px) {
+    height: 759px;
+  }
+  @media (max-width: 1000px) {
+    height: 1305px;
+    //height: fit-content;
+  }
 `;
 const NftHeader = styled.h1`
   position: absolute;
@@ -48,6 +55,19 @@ const CollectionTimeHolder = styled.section`
   justify-content: space-between;
   align-items: center;
   padding: 0px 115px 0px 115px;
+  @media (max-width: 1000px) {
+    height: fit-content;
+    button {
+      width: 60px !important;
+      padding: 0px 10px 0px 10px;
+      font-size: 10px;
+    }
+    > div {
+      flex-direction: column;
+      display: flex;
+      gap: 5px;
+    }
+  }
   button {
     width: 103px;
     height: 40px;
@@ -56,6 +76,9 @@ const CollectionTimeHolder = styled.section`
   h3 {
     font-size: 44px;
     font-weight: 500;
+    @media (max-width: 500px) {
+      font-size: 31px;
+    }
   }
 `;
 const CardsContainer = styled.section`
@@ -70,7 +93,7 @@ const CardsContainer = styled.section`
 `;
 const CollectionsBtn = styled.button`
   width: 195px;
-  height: 46px;
+  min-height: 46px;
   outline: none;
   border: none;
   border-radius: 8px;
@@ -89,7 +112,10 @@ const Card = styled.div`
   align-items: center;
   background-color: #1e1b33;
   cursor: pointer;
-  img{
+  @media (max-width: 1200px) {
+    width: 374px;
+  }
+  img {
     margin-right: 5px;
   }
   > img {
@@ -119,7 +145,7 @@ const TopCollections = () => {
       const data = await loadCollections();
       setCollections(data);
     };
-   // fetchData();
+    fetchData();
   }, []);
   //
   useEffect(() => {
@@ -130,7 +156,7 @@ const TopCollections = () => {
     <SectionContainer className="componentHolder">
       <NftHeader>NFTs</NftHeader>
       <ContentContainer>
-        <CollectionTimeHolder>
+        <CollectionTimeHolder id="section-container">
           <h3>Top Collections</h3>
           <div>
             <button className="hoveredBtn">1 day</button>
@@ -139,7 +165,7 @@ const TopCollections = () => {
           </div>
           <button className="hoveredBtn">Ethereum</button>
         </CollectionTimeHolder>
-        <CardsContainer>
+        <CardsContainer id="section-container">
           {collections.map((nft, index) => (
             <Card key={index}>
               <img src={nft.collection_image} />

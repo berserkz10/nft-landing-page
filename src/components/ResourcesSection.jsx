@@ -60,7 +60,7 @@ const CardsContainer = styled.div`
   }
 `;
 const FirstCard = styled.div`
-  width: 550px;
+  width: 96%;
   height: 210px;
   z-index: 1;
   position: absolute;
@@ -72,6 +72,14 @@ const FirstCard = styled.div`
   justify-content: space-between;
   background-color: #1e1b33;
   border-radius: 8px;
+  @media (max-width: 1200px) {
+    & h4 {
+      font-size: 19px !important;
+    }
+    & p {
+      font-size: 13px !important;
+    }
+  }
   > div {
     display: flex;
     justify-content: start;
@@ -100,7 +108,7 @@ const FirstCard = styled.div`
   }
 `;
 const SecondCard = styled.div`
-  width: 550px;
+  width: 96%;
   height: 210px;
   z-index: 1;
   padding: 32px;
@@ -120,6 +128,14 @@ const CardInfoHolder = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media (max-width: 1200px) {
+     h4 {
+      font-size: 19px !important;
+    }
+     p {
+      font-size: 13px !important;
+    }
+  }
   > div {
     display: flex;
     align-items: center;
@@ -145,7 +161,7 @@ const ResourcesSection = () => {
   return (
     <SectionHolder className="componentHolder">
       <NftHeader>NFTs</NftHeader>
-      <ColoredCircle/>
+      <ColoredCircle />
       <ContentContainer>
         <h3>Resources for getting started</h3>
         <CardsContainer>
