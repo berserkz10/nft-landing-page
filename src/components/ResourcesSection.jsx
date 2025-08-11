@@ -6,6 +6,9 @@ const SectionHolder = styled.section`
   width: 100%;
   //border: white solid 1px;
   padding: 0px 115px 0px 115px;
+  @media (max-width: 1100px) {
+    height: 1116px;
+  }
 `;
 const NftHeader = styled.h1`
   font-size: 96px;
@@ -42,12 +45,20 @@ const CardsContainer = styled.div`
   //border: #ffffff71 solid 1px;
   display: flex;
   gap: 20px;
+  @media (max-width: 1100px) {
+    flex-direction: column;
+    align-items: center;
+  }
   > div {
     width: 49%;
     position: relative;
+    @media (max-width: 1100px) {
+      width: 100%;
+    }
   }
   > div:nth-of-type(1) {
     position: relative;
+
     > img {
       width: 100%;
       height: 88%;
@@ -57,6 +68,7 @@ const CardsContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 10px;
   }
 `;
 const FirstCard = styled.div`
@@ -80,6 +92,7 @@ const FirstCard = styled.div`
       font-size: 13px !important;
     }
   }
+
   > div {
     display: flex;
     justify-content: start;
@@ -117,10 +130,19 @@ const SecondCard = styled.div`
   justify-content: space-between;
   background-color: #1e1b33;
   border-radius: 8px;
+  @media (max-width: 500px) {
+    padding: 11px;
+  }
   > img {
     width: 152px;
     height: 152px;
     margin-right: 5px;
+    @media (max-width: 500px) {
+      width: 112px;
+      height: 109px;
+      margin-right: 5px;
+      align-self: center;
+    }
   }
 `;
 const CardInfoHolder = styled.div`
@@ -129,19 +151,26 @@ const CardInfoHolder = styled.div`
   flex-direction: column;
   justify-content: space-between;
   @media (max-width: 1200px) {
-     h4 {
+    h4 {
       font-size: 19px !important;
     }
-     p {
+    p {
       font-size: 13px !important;
+    }
+    @media (max-width: 500px) {
+      button{
+        width: 60px;
+      }
     }
   }
   > div {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
   }
   button:nth-of-type(1) {
     width: 87px;
+    
   }
   button:nth-of-type(2) {
     width: 75px;
@@ -159,10 +188,10 @@ const CardInfoHolder = styled.div`
 `;
 const ResourcesSection = () => {
   return (
-    <SectionHolder className="componentHolder">
+    <SectionHolder id="section-container" className="componentHolder">
       <NftHeader>NFTs</NftHeader>
       <ColoredCircle />
-      <ContentContainer>
+      <ContentContainer id="section-container">
         <h3>Resources for getting started</h3>
         <CardsContainer>
           <div>
