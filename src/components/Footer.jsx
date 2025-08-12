@@ -7,6 +7,9 @@ const SectionHolder = styled.footer`
   overflow: hidden;
   display: flex;
   flex-direction: column-reverse;
+  @media (max-width: 968px) {
+    height: 607px;
+  }
 `;
 const ContentHolder = styled.div`
   display: flex;
@@ -14,6 +17,12 @@ const ContentHolder = styled.div`
   padding: 115px 115px 0px 115px;
   width: 100%;
   height: 100%;
+  @media (max-width: 968px) {
+    flex-wrap: wrap;
+    padding-top: 0px;
+    justify-content: space-between;
+    align-content: flex-start;
+  }
   h5 {
     font-size: 24px;
     font-weight: 500;
@@ -25,10 +34,30 @@ const ContentHolder = styled.div`
     color: #ffffffc3;
     margin-bottom: 5px;
   }
+  @media (max-width: 1064px) {
+    h5 {
+      font-size: 19px;
+    }
+    p {
+      font-size: 13px;
+    }
+  }
 `;
 
 const FooterInnerDiv = styled.div`
   width: 23%;
+  height: fit-content;
+  @media (max-width: 968px) {
+    width: 33%;
+  }
+  @media (max-width: 444px) {
+    p{
+      font-size: 11px;
+    }
+    h5{
+      font-size: 16px;
+    }
+  }
 `;
 const FooterSection = ({ title, items }) => {
   return (
@@ -41,12 +70,15 @@ const FooterSection = ({ title, items }) => {
   );
 };
 const MarketPlaceHolder = styled.div`
-  height: 100%;
+  height: 255px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding-bottom: 179px;
+  /* padding-bottom: 179px; */
   justify-content: space-between;
+  @media (max-width: 968px) {
+    padding-top: 13px;
+  }
   div:nth-of-type(1) {
     display: flex;
     height: 58px;
@@ -64,8 +96,19 @@ const MarketPlaceHolder = styled.div`
     padding-left: 10px;
     border-radius: 8px 0px 0px 8px;
   }
+  @media (max-width: 412px) {
+     button{
+      height: 50px;
+      width: 111px;
+    }
+    input{
+      width: 186px;
+      height: 50px;
+    }
+  }
   div:nth-of-type(2) {
     display: flex;
+      gap: 4px;
     img {
       width: 32px;
       height: 32px;
@@ -81,6 +124,14 @@ const ReservedRights = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0px 115px;
+  @media (max-width: 600px) {
+    p{
+      font-size: 11px;
+    }
+    >div{
+      gap: 16px!important;
+    }
+  }
   > div {
     display: flex;
     gap: 30px;
@@ -93,7 +144,7 @@ const Footer = () => {
   return (
     <SectionHolder>
       <ColoredCircle $bottom="-150px" $right="-150px" />
-      <ContentHolder>
+      <ContentHolder id="section-container">
         <FooterSection
           title="Marketplace"
           items={[
@@ -143,7 +194,7 @@ const Footer = () => {
           </div>
         </MarketPlaceHolder>
       </ContentHolder>
-      <ReservedRights>
+      <ReservedRights id="section-container">
         <div>
           <p>Privacy Policy</p>
           <p>License</p>

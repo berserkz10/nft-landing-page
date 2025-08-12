@@ -10,7 +10,7 @@ const SectionHolder = styled.section`
   padding: 0px 115px 0px 115px;
   @media (max-width: 1000px) {
     height: 1129px;
-    height: 2094px;
+    
   }
   @media (max-width: 570px) {
     height: 2094px;

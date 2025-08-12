@@ -8,6 +8,15 @@ const SectionHolder = styled.section`
   width: 100%;
   //border: white solid 1px;
   padding: 0px 115px 0px 115px;
+  @media (max-width: 1000px) {
+    height: 1129px;
+  }
+  @media (max-width: 570px) {
+    height: 2094px;
+    .nft-header {
+      left: 57px;
+    }
+  }
 `;
 const NftHeader = styled.h1`
   font-size: 96px;
@@ -39,6 +48,9 @@ const ContentContainer = styled.section`
     font-weight: 500;
     width: 50%;
     height: fit-content;
+    @media (max-width: 600px) {
+      font-size: 31px;
+    }
   }
   > div:nth-of-type(1) {
     width: 100%;
@@ -49,6 +61,8 @@ const ContentContainer = styled.section`
       display: flex;
       gap: 2px;
       align-items: flex-end;
+      flex-wrap: wrap;
+
       button {
         background-color: transparent;
         height: 38px;
@@ -59,6 +73,11 @@ const ContentContainer = styled.section`
         font-size: 14px;
         font-weight: 500;
         cursor: pointer;
+        border: white 1px solid;
+        @media (max-width: 600px) {
+          padding: 0px 11px;
+          font-size: 11px;
+        }
       }
     }
   }
@@ -67,8 +86,19 @@ const CardsContainer = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
-  justify-content: space-between;
+  //justify-content: space-between;
   // border: 1px solid white;
+  gap: 5px;
+  @media (max-width: 1000px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 570px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const Card = styled.div`
   width: 24%;
@@ -78,6 +108,11 @@ const Card = styled.div`
   flex-direction: column;
   justify-content: space-around;
   padding: 10px;
+  border-radius: 8px;
+  @media (max-width: 1000px) {
+    width: 280px;
+  }
+
   > img {
     width: 100%;
     height: 210px;
@@ -143,12 +178,12 @@ const PopularSection = () => {
       const firstFour = fourNfts(res);
       setCollections(firstFour);
     };
-    //fetchingData();
+    fetchingData();
   }, []);
   return (
-    <SectionHolder className="componentHolder">
-      <NftHeader>NFTs</NftHeader>
-      <ContentContainer>
+    <SectionHolder id="section-container" className="componentHolder">
+      <NftHeader className="nft-header">NFTs</NftHeader>
+      <ContentContainer id="section-container">
         <div>
           <h3>Browse popular NFTs</h3>
           <div>

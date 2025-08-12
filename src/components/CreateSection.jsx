@@ -5,10 +5,24 @@ const SectionHolder = styled.div`
   height: 486px;
   padding: 0px 115px;
   display: flex;
+  @media (max-width: 1200px) {
+    height: 836px;
+    flex-direction: column-reverse;
+    
+    align-items: center;
+  }
 `;
 const ImageContainer = styled.div`
   width: 40%;
   height: 100%;
+  @media (max-width: 1200px) {
+    width: 486px;
+    height: 486px;
+  }
+  @media (max-width: 486px) {
+    width: 350px;
+    height: 350px;
+  }
   img {
     width: 100%;
     height: 100%;
@@ -19,24 +33,27 @@ const TextContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  button{
+  @media (max-width: 1200px) {
+    align-items: center;
+  }
+  button {
     width: 149px;
     height: 44px;
   }
-  h3{
+  h3 {
     font-size: 44px;
     font-weight: 500;
   }
-  p{
+  p {
     font-size: 18px;
     font-weight: 300;
     line-height: 32px;
-    color: #C0C0C0;
+    color: #c0c0c0;
   }
 `;
 const CreateSection = () => {
   return (
-    <SectionHolder >
+    <SectionHolder id="section-container" className="componentHolder">
       <ImageContainer>
         <ColoredCircle />
         <img src="./ethereumPic.png" alt="" />
