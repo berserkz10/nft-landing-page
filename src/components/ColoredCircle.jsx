@@ -11,5 +11,8 @@ const ColoredCircle = styled.div`
   left: ${({ $left }) => $left || "auto"};
   right: ${({ $right }) => $right || "auto"};
   bottom: ${({ $bottom }) => $bottom || "auto"};
+  @media (max-width: 450px) {
+    width: 350px;
+  }
 `;
 export default ColoredCircle
