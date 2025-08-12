@@ -14,25 +14,25 @@ import CreateSection from "./components/CreateSection";
 import BrandsNames from "./components/BrandsName";
 import Footer from "./components/Footer";
 
-
-
-
 import "./App.css";
 
 function App() {
+  //console.log(import.meta.env.VITE_OPENSEA_API);
+  //console.log(import.meta.env.VITE_MORALIS_API);
+
   return (
     <>
       <GlobalStyles />
       <NavBar />
-      <MainSection/>
-      <SelectedDrops/>
-      <TopCollections/>
-      <TrendingNfts/>
-      <ResourcesSection/>
-      <PopularSection/>
-      <CreateSection/>
-      <BrandsNames/>
-      <Footer/>
+      <MainSection />
+      <SelectedDrops />
+      <TopCollections />
+      <TrendingNfts />
+      <ResourcesSection />
+      <PopularSection />
+      <CreateSection />
+      <BrandsNames />
+      <Footer />
     </>
   );
 }
